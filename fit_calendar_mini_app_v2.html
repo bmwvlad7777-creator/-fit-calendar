@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#292321"><title>Fit Calendar — September 2026</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f0ed;color:#292321;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:640px;margin:auto;padding:14px 14px 70px}
+.hero{color:white;background:linear-gradient(145deg,#292321,#92796a);padding:24px 20px;border-radius:26px;box-shadow:0 8px 28px #0002;position:sticky;top:8px;z-index:5}
+.hero h1{margin:0;font-size:29px}.hero p{margin:5px 0;opacity:.9;font-size:13px}
+.barbg{height:8px;background:#ffffff35;border-radius:10px;margin-top:15px;overflow:hidden}#bar{height:100%;width:0;background:white;transition:.3s}#count{font-size:12px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0 18px}.cal{border:0;background:white;border-radius:12px;padding:9px 2px;box-shadow:0 2px 8px #0000000b;cursor:pointer}.cal small{display:block;color:#92796a;margin-top:2px}.cal.done{background:#78907d;color:white}
+.card{background:white;border-radius:22px;padding:18px;margin:12px 0;box-shadow:0 4px 18px #0000000b}.rest{opacity:.8}label{font-size:11px;letter-spacing:1px;color:#92796a;font-weight:800}h2{font-size:20px;margin:5px 0 13px}.head{display:flex;justify-content:space-between;align-items:flex-start}.round{border:0;width:44px;height:44px;border-radius:50%;background:#f0eae6;font-size:24px;cursor:pointer}.round.done{background:#78907d;color:white}
+.exrow{display:flex;gap:7px;margin:8px 0}.exmain{flex:1;border:1px solid #e5ddd8;background:#faf8f7;border-radius:14px;padding:12px;text-align:left;cursor:pointer}.exmain span{display:block;color:#92796a;font-size:12px;margin-top:3px}.video{display:flex;align-items:center;justify-content:center;min-width:72px;border-radius:14px;background:#292321;color:white;text-decoration:none;font-size:12px;font-weight:700}.info{display:none;background:#f1ebe7;border-radius:13px;padding:12px;margin-bottom:8px}.info.open{display:block}.info button{border:0;border-radius:9px;padding:8px;margin-right:5px;background:white}
+.finish{width:100%;border:0;background:#292321;color:white;padding:13px;border-radius:14px;font-weight:700;margin-top:8px;cursor:pointer}.finish.done{background:#78907d}
+.timer{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#292321;color:white;padding:12px 18px;border-radius:18px;box-shadow:0 8px 30px #0004;display:none;z-index:10;min-width:210px;text-align:center}.timer b{font-size:22px;display:block}.timer button{border:0;background:#ffffff20;color:white;border-radius:9px;padding:6px 10px;margin-top:5px}
+@media(max-width:400px){.calendar{gap:4px}.cal{font-size:12px}.video{min-width:64px;font-size:11px}}
+</style></head>
+<body><div class="app">
+<div class="hero"><h1>Fit Calendar ✨</h1><p>Сентябрь 2026 · интерактивный фитнес-план</p><div class="barbg"><div id="bar"></div></div><div id="count">0 из 13 тренировок выполнено</div></div>
+<div class="calendar"><button id="cal1" class="cal" onclick="scrollToDay(1)"><b>1</b><small>🔥</small></button><button id="cal2" class="cal" onclick="scrollToDay(2)"><b>2</b><small>·</small></button><button id="cal3" class="cal" onclick="scrollToDay(3)"><b>3</b><small>🔥</small></button><button id="cal4" class="cal" onclick="scrollToDay(4)"><b>4</b><small>·</small></button><button id="cal5" class="cal" onclick="scrollToDay(5)"><b>5</b><small>🔥</small></button><button id="cal6" class="cal" onclick="scrollToDay(6)"><b>6</b><small>·</small></button><button id="cal7" class="cal" onclick="scrollToDay(7)"><b>7</b><small>·</small></button><button id="cal8" class="cal" onclick="scrollToDay(8)"><b>8</b><small>🔥</small></button><button id="cal9" class="cal" onclick="scrollToDay(9)"><b>9</b><small>·</small></button><button id="cal10" class="cal" onclick="scrollToDay(10)"><b>10</b><small>🔥</small></button><button id="cal11" class="cal" onclick="scrollToDay(11)"><b>11</b><small>·</small></button><button id="cal12" class="cal" onclick="scrollToDay(12)"><b>12</b><small>🔥</small></button><button id="cal13" class="cal" onclick="scrollToDay(13)"><b>13</b><small>·</small></button><button id="cal14" class="cal" onclick="scrollToDay(14)"><b>14</b><small>·</small></button><button id="cal15" class="cal" onclick="scrollToDay(15)"><b>15</b><small>🔥</small></button><button id="cal16" class="cal" onclick="scrollToDay(16)"><b>16</b><small>·</small></button><button id="cal17" class="cal" onclick="scrollToDay(17)"><b>17</b><small>🔥</small></button><button id="cal18" class="cal" onclick="scrollToDay(18)"><b>18</b><small>·</small></button><button id="cal19" class="cal" onclick="scrollToDay(19)"><b>19</b><small>🔥</small></button><button id="cal20" class="cal" onclick="scrollToDay(20)"><b>20</b><small>·</small></button><button id="cal21" class="cal" onclick="scrollToDay(21)"><b>21</b><small>·</small></button><button id="cal22" class="cal" onclick="scrollToDay(22)"><b>22</b><small>🔥</small></button><button id="cal23" class="cal" onclick="scrollToDay(23)"><b>23</b><small>·</small></button><button id="cal24" class="cal" onclick="scrollToDay(24)"><b>24</b><small>🔥</small></button><button id="cal25" class="cal" onclick="scrollToDay(25)"><b>25</b><small>·</small></button><button id="cal26" class="cal" onclick="scrollToDay(26)"><b>26</b><small>🔥</small></button><button id="cal27" class="cal" onclick="scrollToDay(27)"><b>27</b><small>·</small></button><button id="cal28" class="cal" onclick="scrollToDay(28)"><b>28</b><small>·</small></button><button id="cal29" class="cal" onclick="scrollToDay(29)"><b>29</b><small>🔥</small></button><button id="cal30" class="cal" onclick="scrollToDay(30)"><b>30</b><small>·</small></button></div>
+<section class="card" id="day1">
+          <div class="head"><div><label>1 СЕНТЯБРЯ</label><h2>🍑 Ягодицы + ноги</h2></div>
+          <button class="round" onclick="complete(1)" id="round1">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x1_0')"><b>Hip Thrust</b><span>4 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x1_0"><b>Hip Thrust</b><p>4 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x1_1')"><b>Присед в Смите</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x1_1"><b>Присед в Смите</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x1_2')"><b>Жим ногами</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x1_2"><b>Жим ногами</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x1_3')"><b>Румынская тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x1_3"><b>Румынская тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x1_4')"><b>Отведение ног</b><span>3 × 15–20</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+abduction+machine+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x1_4"><b>Отведение ног</b><p>3 × 15–20. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(1)" id="finish1">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day2"><div class="head"><div><label>2 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day3">
+          <div class="head"><div><label>3 СЕНТЯБРЯ</label><h2>💪 Верх тела</h2></div>
+          <button class="round" onclick="complete(3)" id="round3">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x3_0')"><b>Тяга верхнего блока</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x3_0"><b>Тяга верхнего блока</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x3_1')"><b>Горизонтальная тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x3_1"><b>Горизонтальная тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x3_2')"><b>Жим гантелей сидя</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x3_2"><b>Жим гантелей сидя</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x3_3')"><b>Разведения в стороны</b><span>3 × 12–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x3_3"><b>Разведения в стороны</b><p>3 × 12–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x3_4')"><b>Бицепс + трицепс</b><span>2 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=biceps+curl+triceps+pushdown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x3_4"><b>Бицепс + трицепс</b><p>2 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(3)" id="finish3">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day4"><div class="head"><div><label>4 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day5">
+          <div class="head"><div><label>5 СЕНТЯБРЯ</label><h2>🔥 Ягодицы + бёдра</h2></div>
+          <button class="round" onclick="complete(5)" id="round5">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x5_0')"><b>Ягодичный мост</b><span>4 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x5_0"><b>Ягодичный мост</b><p>4 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x5_1')"><b>Болгарские выпады</b><span>3 × 8–10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x5_1"><b>Болгарские выпады</b><p>3 × 8–10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x5_2')"><b>Сгибание ног</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+curl+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x5_2"><b>Сгибание ног</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x5_3')"><b>Гиперэкстензия</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=back+extension+glute+focus+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x5_3"><b>Гиперэкстензия</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x5_4')"><b>Шаги на платформу</b><span>2 × 10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=step+up+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x5_4"><b>Шаги на платформу</b><p>2 × 10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(5)" id="finish5">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day6"><div class="head"><div><label>6 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card rest" id="day7"><div class="head"><div><label>7 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card" id="day8">
+          <div class="head"><div><label>8 СЕНТЯБРЯ</label><h2>🍑 Ягодицы + ноги</h2></div>
+          <button class="round" onclick="complete(8)" id="round8">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x8_0')"><b>Hip Thrust</b><span>4 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x8_0"><b>Hip Thrust</b><p>4 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x8_1')"><b>Присед в Смите</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x8_1"><b>Присед в Смите</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x8_2')"><b>Жим ногами</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x8_2"><b>Жим ногами</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x8_3')"><b>Румынская тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x8_3"><b>Румынская тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x8_4')"><b>Отведение ног</b><span>3 × 15–20</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+abduction+machine+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x8_4"><b>Отведение ног</b><p>3 × 15–20. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(8)" id="finish8">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day9"><div class="head"><div><label>9 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day10">
+          <div class="head"><div><label>10 СЕНТЯБРЯ</label><h2>💪 Верх тела</h2></div>
+          <button class="round" onclick="complete(10)" id="round10">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x10_0')"><b>Тяга верхнего блока</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x10_0"><b>Тяга верхнего блока</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x10_1')"><b>Горизонтальная тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x10_1"><b>Горизонтальная тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x10_2')"><b>Жим гантелей сидя</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x10_2"><b>Жим гантелей сидя</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x10_3')"><b>Разведения в стороны</b><span>3 × 12–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x10_3"><b>Разведения в стороны</b><p>3 × 12–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x10_4')"><b>Бицепс + трицепс</b><span>2 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=biceps+curl+triceps+pushdown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x10_4"><b>Бицепс + трицепс</b><p>2 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(10)" id="finish10">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day11"><div class="head"><div><label>11 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day12">
+          <div class="head"><div><label>12 СЕНТЯБРЯ</label><h2>🔥 Ягодицы + бёдра</h2></div>
+          <button class="round" onclick="complete(12)" id="round12">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x12_0')"><b>Ягодичный мост</b><span>4 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x12_0"><b>Ягодичный мост</b><p>4 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x12_1')"><b>Болгарские выпады</b><span>3 × 8–10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x12_1"><b>Болгарские выпады</b><p>3 × 8–10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x12_2')"><b>Сгибание ног</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+curl+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x12_2"><b>Сгибание ног</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x12_3')"><b>Гиперэкстензия</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=back+extension+glute+focus+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x12_3"><b>Гиперэкстензия</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x12_4')"><b>Шаги на платформу</b><span>2 × 10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=step+up+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x12_4"><b>Шаги на платформу</b><p>2 × 10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(12)" id="finish12">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day13"><div class="head"><div><label>13 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card rest" id="day14"><div class="head"><div><label>14 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card" id="day15">
+          <div class="head"><div><label>15 СЕНТЯБРЯ</label><h2>🍑 Ягодицы + ноги</h2></div>
+          <button class="round" onclick="complete(15)" id="round15">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x15_0')"><b>Hip Thrust</b><span>4 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x15_0"><b>Hip Thrust</b><p>4 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x15_1')"><b>Присед в Смите</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x15_1"><b>Присед в Смите</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x15_2')"><b>Жим ногами</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x15_2"><b>Жим ногами</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x15_3')"><b>Румынская тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x15_3"><b>Румынская тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x15_4')"><b>Отведение ног</b><span>3 × 15–20</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+abduction+machine+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x15_4"><b>Отведение ног</b><p>3 × 15–20. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(15)" id="finish15">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day16"><div class="head"><div><label>16 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day17">
+          <div class="head"><div><label>17 СЕНТЯБРЯ</label><h2>💪 Верх тела</h2></div>
+          <button class="round" onclick="complete(17)" id="round17">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x17_0')"><b>Тяга верхнего блока</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x17_0"><b>Тяга верхнего блока</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x17_1')"><b>Горизонтальная тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x17_1"><b>Горизонтальная тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x17_2')"><b>Жим гантелей сидя</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x17_2"><b>Жим гантелей сидя</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x17_3')"><b>Разведения в стороны</b><span>3 × 12–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x17_3"><b>Разведения в стороны</b><p>3 × 12–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x17_4')"><b>Бицепс + трицепс</b><span>2 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=biceps+curl+triceps+pushdown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x17_4"><b>Бицепс + трицепс</b><p>2 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(17)" id="finish17">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day18"><div class="head"><div><label>18 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day19">
+          <div class="head"><div><label>19 СЕНТЯБРЯ</label><h2>🔥 Ягодицы + бёдра</h2></div>
+          <button class="round" onclick="complete(19)" id="round19">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x19_0')"><b>Ягодичный мост</b><span>4 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x19_0"><b>Ягодичный мост</b><p>4 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x19_1')"><b>Болгарские выпады</b><span>3 × 8–10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x19_1"><b>Болгарские выпады</b><p>3 × 8–10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x19_2')"><b>Сгибание ног</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+curl+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x19_2"><b>Сгибание ног</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x19_3')"><b>Гиперэкстензия</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=back+extension+glute+focus+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x19_3"><b>Гиперэкстензия</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x19_4')"><b>Шаги на платформу</b><span>2 × 10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=step+up+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x19_4"><b>Шаги на платформу</b><p>2 × 10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(19)" id="finish19">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day20"><div class="head"><div><label>20 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card rest" id="day21"><div class="head"><div><label>21 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card" id="day22">
+          <div class="head"><div><label>22 СЕНТЯБРЯ</label><h2>🍑 Ягодицы + ноги</h2></div>
+          <button class="round" onclick="complete(22)" id="round22">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x22_0')"><b>Hip Thrust</b><span>4 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x22_0"><b>Hip Thrust</b><p>4 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x22_1')"><b>Присед в Смите</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x22_1"><b>Присед в Смите</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x22_2')"><b>Жим ногами</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x22_2"><b>Жим ногами</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x22_3')"><b>Румынская тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x22_3"><b>Румынская тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x22_4')"><b>Отведение ног</b><span>3 × 15–20</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+abduction+machine+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x22_4"><b>Отведение ног</b><p>3 × 15–20. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(22)" id="finish22">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day23"><div class="head"><div><label>23 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day24">
+          <div class="head"><div><label>24 СЕНТЯБРЯ</label><h2>💪 Верх тела</h2></div>
+          <button class="round" onclick="complete(24)" id="round24">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x24_0')"><b>Тяга верхнего блока</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x24_0"><b>Тяга верхнего блока</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x24_1')"><b>Горизонтальная тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x24_1"><b>Горизонтальная тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x24_2')"><b>Жим гантелей сидя</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x24_2"><b>Жим гантелей сидя</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x24_3')"><b>Разведения в стороны</b><span>3 × 12–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x24_3"><b>Разведения в стороны</b><p>3 × 12–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x24_4')"><b>Бицепс + трицепс</b><span>2 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=biceps+curl+triceps+pushdown+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x24_4"><b>Бицепс + трицепс</b><p>2 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(24)" id="finish24">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day25"><div class="head"><div><label>25 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section><section class="card" id="day26">
+          <div class="head"><div><label>26 СЕНТЯБРЯ</label><h2>🔥 Ягодицы + бёдра</h2></div>
+          <button class="round" onclick="complete(26)" id="round26">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x26_0')"><b>Ягодичный мост</b><span>4 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x26_0"><b>Ягодичный мост</b><p>4 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x26_1')"><b>Болгарские выпады</b><span>3 × 8–10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=bulgarian+split+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x26_1"><b>Болгарские выпады</b><p>3 × 8–10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x26_2')"><b>Сгибание ног</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+curl+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x26_2"><b>Сгибание ног</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x26_3')"><b>Гиперэкстензия</b><span>3 × 10–15</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=back+extension+glute+focus+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x26_3"><b>Гиперэкстензия</b><p>3 × 10–15. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x26_4')"><b>Шаги на платформу</b><span>2 × 10 / нога</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=step+up+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x26_4"><b>Шаги на платформу</b><p>2 × 10 / нога. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(26)" id="finish26">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day27"><div class="head"><div><label>27 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card rest" id="day28"><div class="head"><div><label>28 СЕНТЯБРЯ</label><h2>😴 Восстановление</h2></div></div><p>Прогулка 20–40 минут + мягкая растяжка.</p></section><section class="card" id="day29">
+          <div class="head"><div><label>29 СЕНТЯБРЯ</label><h2>🍑 Ягодицы + ноги</h2></div>
+          <button class="round" onclick="complete(29)" id="round29">○</button></div>
+          <div class="exlist"><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x29_0')"><b>Hip Thrust</b><span>4 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x29_0"><b>Hip Thrust</b><p>4 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x29_1')"><b>Присед в Смите</b><span>3 × 8–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x29_1"><b>Присед в Смите</b><p>3 × 8–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x29_2')"><b>Жим ногами</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=leg+press+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x29_2"><b>Жим ногами</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x29_3')"><b>Румынская тяга</b><span>3 × 10–12</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=romanian+deadlift+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x29_3"><b>Румынская тяга</b><p>3 × 10–12. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div><div class="exrow">
+                <button class="exmain" onclick="toggleInfo('x29_4')"><b>Отведение ног</b><span>3 × 15–20</span></button>
+                <a class="video" href="https://www.youtube.com/results?search_query=hip+abduction+machine+proper+form" target="_blank">▶ Видео</a>
+                </div>
+                <div class="info" id="x29_4"><b>Отведение ног</b><p>3 × 15–20. Работай подконтрольно, не жертвуй техникой ради веса.</p>
+                <button onclick="startTimer(60)">⏱ 60 сек</button><button onclick="startTimer(90)">⏱ 90 сек</button></div></div>
+          <button class="finish" onclick="complete(29)" id="finish29">✓ Завершить тренировку</button>
+        </section><section class="card rest" id="day30"><div class="head"><div><label>30 СЕНТЯБРЯ</label><h2>🚶 Лёгкая активность</h2></div></div><p>Лёгкое кардио или мобильность 20–30 минут.</p></section>
+</div>
+<div class="timer" id="timer"><span>Отдых</span><b id="timerValue">60</b><button onclick="stopTimer()">Закрыть</button></div>
+<script>
+const days=[1, 3, 5, 8, 10, 12, 15, 17, 19, 22, 24, 26, 29], total=days.length;
+function scrollToDay(d){document.getElementById("day"+d).scrollIntoView({behavior:"smooth",block:"start"})}
+function toggleInfo(id){document.querySelectorAll(".info").forEach(x=>{if(x.id!==id)x.classList.remove("open")});document.getElementById(id).classList.toggle("open")}
+function complete(d){localStorage.setItem("fit-done-"+d,localStorage.getItem("fit-done-"+d)==="1"?"0":"1");update()}
+function update(){let n=0;days.forEach(d=>{let yes=localStorage.getItem("fit-done-"+d)==="1", c=document.getElementById("cal"+d),r=document.getElementById("round"+d),f=document.getElementById("finish"+d);if(yes){n++;c.classList.add("done");r.classList.add("done");r.textContent="✓";f.classList.add("done");f.textContent="✓ Тренировка выполнена"}else{c.classList.remove("done");r.classList.remove("done");r.textContent="○";f.classList.remove("done");f.textContent="✓ Завершить тренировку"}});document.getElementById("count").textContent=n+" из "+total+" тренировок выполнено";document.getElementById("bar").style.width=(n/total*100)+"%"}
+let interval=null;
+function startTimer(sec){clearInterval(interval);let left=sec, box=document.getElementById("timer"), val=document.getElementById("timerValue");box.style.display="block";val.textContent=left;interval=setInterval(()=>{left--;val.textContent=left;if(left<=0){clearInterval(interval);val.textContent="Готово! 🔥";navigator.vibrate&&navigator.vibrate([200,100,200])}},1000)}
+function stopTimer(){clearInterval(interval);document.getElementById("timer").style.display="none"}
+update();
+</script></body></html>
